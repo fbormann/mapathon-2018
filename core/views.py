@@ -54,6 +54,7 @@ def createCompetition(request):
     
     return redirect("list_submissions", id=mapathon.id)
 
+@csrf_exempt
 def receiveResponse(request):
     data = request.POST
     print(data)
