@@ -43,8 +43,8 @@ var form = $('#competition-form');
 var submission_values = {};
 
 form.submit(function(e) {
-    $(e).preventDefault();
-
+    e.preventDefault();
+    
     form_object = $(this)[0];
     submission_values["competition_name"] = form_object[0].value;
     submission_values["competition_goal"] = form_object[1].value;
