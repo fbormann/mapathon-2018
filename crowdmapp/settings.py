@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'crowdmapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd7jsd4idsd9qf4',
+        'USER': 'hqirxxjqzmbcca',
+        'PASSWORD': '2973828ac38e2ceb14eaa905176149a44dac1a6201b54359f671eefd9376193d',
+        'HOST': 'ec2-54-221-210-97.compute-1.amazonaws.com',
+        'PORT': 5432,
     }
 }
 
