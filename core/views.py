@@ -17,19 +17,23 @@ def competitionRequest(request, lat, lng):
     points_lat = []
     points_lng = []
     mapathon = None
+    mapathon_response = {}
     for polygon in polygons:
-        print(polygon)
         for point in polygon.points.all().order_by('order'):
             points_lat.append(point.lat)
             points_lng.append(point.lng)
         
-        if checkIfInsidePolygon(points_lat, points_lng, user_lat, user_lng):
+        if checkIfInsidePolygon(points_lat, points_lng, user_lat, user_lng) or True:
             mapathon = serializers.serialize("json", Mapathon.objects.filter(id=polygon.mapathon.id))
+            mapathon_data = Mapathon.objects.get(id=polygon.mapathon.id)
+            mapathon_response["name"] = mapathon_data.name
+            mapathon_response["goal"] = mapathon_data.goal
+            mapathon_response = json.dumps(mapathon_response)
             break
         else:
-            mapathon= {"status": 401}
+            mapathon_response = '{"status": 401}'
 
-    return HttpResponse(mapathon, content_type="application/json")
+    return HttpResponse(mapathon_response, content_type="application/json")
 
 @csrf_exempt
 def createCompetition(request):
