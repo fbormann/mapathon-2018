@@ -23,7 +23,7 @@ def competitionRequest(request, lat, lng):
             points_lat.append(point.lat)
             points_lng.append(point.lng)
         
-        if checkIfInsidePolygon(points_lat, points_lng, user_lat, user_lng) or True:
+        if checkIfInsidePolygon(points_lat, points_lng, user_lat, user_lng):
             mapathon = serializers.serialize("json", Mapathon.objects.filter(id=polygon.mapathon.id))
             mapathon_data = Mapathon.objects.get(id=polygon.mapathon.id)
             mapathon_response["name"] = mapathon_data.name
