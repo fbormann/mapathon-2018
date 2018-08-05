@@ -27,7 +27,7 @@ def competitionRequest(request, lat, lng):
             mapathon = serializers.serialize("json", Mapathon.objects.filter(id=polygon.mapathon.id))
             break
         else:
-            print("not inside")
+            mapathon= {"status": 401}
 
     return HttpResponse(mapathon, content_type="application/json")
 
