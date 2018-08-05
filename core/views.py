@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -52,17 +52,16 @@ def createCompetition(request):
         order += 1 
         new_point.save()
     
-    return JsonResponse(data={"success": "ok"},status=200)
-
+    return redirect("list_submissions", id=mapathon.id)
 
 def receiveResponse(request):
     data = request.POST
+    print(data)
     return data
 
-def listSubmissions(request):
-    id = request.GET["id"]
+def listSubmissions(request, id):
     mapathon = Mapathon.objects.get(id=id)
-    submissions = mapathon.submissions.get_all()
+    submissions = mapathon.submissions.all()
     context = {}
     context["submissions"] = submissions
-    return HttpResponse("core/competition_list.html", context)
+    return render(request, "core/competition_list.html", context)

@@ -16,10 +16,14 @@
         <h2>Competition Report</h2>
     </div>
     <div>
+        {% if submissions %}
         <ul>
         {% for submission in submissions %}
             <li>description: {{submission.description}} , lat: {{submission.lat}}, lng: {{submission.lng}}</li>
         {% endfor %}
+        {% else %}
+            <h4>There are no submissions yet.</h4>
+        {% endif %}
     </ul>
     </div>
     
