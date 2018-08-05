@@ -53,3 +53,16 @@ def createCompetition(request):
         new_point.save()
     
     return JsonResponse(data={"success": "ok"},status=200)
+
+
+def receiveResponse(request):
+    data = request.POST
+    return data
+
+def listSubmissions(request):
+    id = request.GET["id"]
+    mapathon = Mapathon.objects.get(id=id)
+    submissions = mapathon.submissions.get_all()
+    context = {}
+    context["submissions"] = submissions
+    return HttpResponse("core/competition_list.html", context)

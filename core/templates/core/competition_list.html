@@ -1,0 +1,26 @@
+{% extends "core/index.html" %}
+
+{% load static %}
+
+{% block style %}
+{% endblock style %}
+
+{% block javascript %}
+<script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+
+{% endblock javascript %}
+
+{% block main %}
+    
+    <div class="pb-2 mt-4 mb-2 border-bottom">
+        <h2>Competition Report</h2>
+    </div>
+    <div>
+        <ul>
+        {% for submission in submissions %}
+            <li>description: {{submission.description}} , lat: {{submission.lat}}, lng: {{submission.lng}}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    
+{% endblock main %}

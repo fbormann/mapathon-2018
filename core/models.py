@@ -9,6 +9,13 @@ class Point(models.Model):
     lng = models.FloatField()
     polygon = models.ForeignKey('Polygon', related_name='points', on_delete=models.CASCADE)
 
+class ResultSubmission(models.Model):
+    lat = models.FloatField()
+    lng = models.FloatField()
+    title = models.CharField(max_length=120)
+    category = models.CharField(max_length=120)
+    description = models.TextField()
+    mapathon = models.ForeignKey('Mapathon', related_name='submissions', on_delete=models.CASCADE)
 
 class Mapathon(models.Model):
     name = models.CharField(max_length=120)
