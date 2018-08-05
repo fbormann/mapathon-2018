@@ -59,7 +59,7 @@ def receiveResponse(request):
     data = request.POST
     mapathon = Mapathon.objects.get(name=data["name"])
     submission = ResultSubmission(description=data["description"], category=data["category"], 
-    lat=float(data["latitude"]), lng=floaT(data["longitude"]), title= data["title"], mapathon=mapathon)
+    lat=float(data["latitude"]), lng=float(data["longitude"]), title= data["title"], mapathon=mapathon)
     submission.save()
     return JsonResponse(data, status=200)
 
