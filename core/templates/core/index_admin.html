@@ -6,13 +6,33 @@
 {% endblock style %}
 
 {% block javascript %}
+<script src="{% static 'js/main.js' %}" type="text/javascript"></script>
 
 {% endblock javascript %}
 
 {% block main %}
-    <div>
-        <h3>Crie o polígono de pesquisa aqui:</h3>
+    
+    <div class="pb-2 mt-4 mb-2 border-bottom">
+        <h2>Competition Info</h2>
     </div>
-
+    <div id="data-form-helder" class="col-md-8">
+        
+        <form id="competition-form" action="">
+            <div class="form-group">
+                <label for="competitionName">Competition Name</label>
+                <input type="text" class="form-control" id="competitionName" placeholder="enter Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Goal</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Mapathon!</button>
+        </form>
+        
+    </div>
+    <div id="creation-header" class="col-md-12">
+            <h3 class="align-center">Create your polygon:</h3>
+            <button class="btn btn-normal" onclick="erasePolygon()">Restart Polygon</button>
+    </div>
     <div id="map"></div>
 {% endblock main %}
