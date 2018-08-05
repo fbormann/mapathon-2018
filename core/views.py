@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from .models import Polygon, Point, Mapathon
+from .models import Polygon, Point, Mapathon, ResultSubmission
 from .utils import checkIfInsidePolygon
 from django.core import serializers
 
@@ -57,8 +57,11 @@ def createCompetition(request):
 @csrf_exempt
 def receiveResponse(request):
     data = request.POST
-    print(data)
-    return data
+    mapathon = Mapathon.objects.get(name=data["name"])
+    submission = ResultSubmission(description=data["description"], category=data["category"], 
+    lat=float(data["latitude"]), lng=floaT(data["longitude"]), title= data["title"], mapathon=mapathon)
+    submission.save()
+    return JsonResponse(data, status=200)
 
 def listSubmissions(request, id):
     mapathon = Mapathon.objects.get(id=id)
